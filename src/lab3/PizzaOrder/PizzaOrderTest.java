@@ -58,20 +58,6 @@ class PizzaItem implements Item{
         return type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PizzaItem)) return false;
-
-        PizzaItem pizzaItem = (PizzaItem) o;
-
-        return type != null ? type.equals(pizzaItem.type) : pizzaItem.type == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return type != null ? type.hashCode() : 0;
-    }
 }
 
 
@@ -98,20 +84,6 @@ class ExtraItem implements Item{
         return type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ExtraItem)) return false;
-
-        ExtraItem extraItem = (ExtraItem) o;
-
-        return type != null ? type.equals(extraItem.type) : extraItem.type == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return type != null ? type.hashCode() : 0;
-    }
 }
 
 
@@ -141,23 +113,6 @@ class Product{
         this.count = count;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-
-        Product product = (Product) o;
-
-        if (count != product.count) return false;
-        return item != null ? item.equals(product.item) : product.item == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = item != null ? item.hashCode() : 0;
-        result = 31 * result + count;
-        return result;
-    }
 }
 
 
