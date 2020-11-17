@@ -13,7 +13,7 @@
 
 */
 
-package lab5;
+package lab5.ComplexNumber;
 
 import java.util.Collections;
 import java.util.LinkedList;
