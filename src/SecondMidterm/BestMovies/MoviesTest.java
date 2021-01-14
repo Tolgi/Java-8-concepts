@@ -36,11 +36,11 @@ class Movie {
 
     @Override
     public String toString() {
-        return String.format("%s (%d) of %d ratings", title, getAverageRaiting(), numberOfRatings());
+        return String.format("%s (%.2f) of %d ratings", title, getAverageRaiting(), numberOfRatings());
     }
 }
 
-class MovieFactory {
+class MoviesFactory {
     public static Movie getMovieInstance(String title, int[] raitings) {
         return new Movie(title, raitings);
     }
@@ -54,23 +54,24 @@ class MoviesList {
     }
 
     public void addMovie(String title, int[] ratings) {
-        movies.add(MovieFactory.getMovieInstance(title, ratings));
+        movies.add(MoviesFactory.getMovieInstance(title, ratings));
     }
 
     public List<Movie> top10ByAvgRating() {
         return movies.stream()
-                .limit(10)
                 .sorted(Comparator.comparingDouble(Movie::getAverageRaiting).reversed().thenComparing(Movie::getTitle))
+                .limit(10)
                 .collect(Collectors.toList());
     }
 
     public List<Movie> top10ByRatingCoef() {
         return movies.stream()
+                .sorted(Comparator.comparingDouble((Movie m) -> m.getBestRaitingCoef(getMaxNumOfAllRatings()))
+                        .reversed()
+                        .thenComparing(Movie::getTitle))
                 .limit(10)
-                .sorted(Comparator.comparingDouble(m -> m.getBestRaitingCoef(getMaxNumOfAllRatings())))
                 .collect(Collectors.toList());
     }
-
 
     private int getMaxNumOfAllRatings() {
         return movies.stream()
@@ -78,13 +79,9 @@ class MoviesList {
                 .sum();
     }
 
-
-
-
-
 }
 
-public class MovieTest {
+public class MoviesTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MoviesList moviesList = new MoviesList();
