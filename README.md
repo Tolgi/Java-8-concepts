@@ -1,2 +1,2 @@
-# NP_JavaTasks
+# Java 8 concepts
 Napredno programiranje - (Java) 
